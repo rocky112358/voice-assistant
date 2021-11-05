@@ -18,6 +18,7 @@ from google.assistant.embedded.v1alpha2 import (
 )
 import pocketsphinx
 
+from features import desktop
 from helpers import assistant_helpers, audio_helpers, device_helpers
 
 
@@ -29,6 +30,10 @@ conversation_stream=None
 
 logging.basicConfig(format="[%(levelname)s] %(asctime)s|%(filename)s:%(lineno)s|%(message)s", level="DEBUG")
 
+features_map = {
+    "com.home.desktop.wakeup": desktop.wake_on_lan,
+    "com.home.desktop.exec_calc": desktop.exec_calc
+}
 
 def create_grpc_channel(credentials):
     try:
@@ -100,13 +105,8 @@ def run_assistant(grpc_channel, conversation_stream):
         device_config = json.load(f)
     device_handler = device_helpers.DeviceRequestHandler(device_config['id'])
 
-    @device_handler.command('com.example.commands.WakeupDesktop')
-    def wake_on_lan(**kwargs):
-        print("Sending magic packet...")
-        magic = bytes.fromhex("FF"*6 + "2CF05DEA0A98"*16)
-        sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)  # UDP
-        sock.setsockopt(socket.SOL_SOCKET, socket.SO_BROADCAST, 1)  # Broadcast
-        sock.sendto(magic, ("192.168.0.255", 7))  # to port 7 of broadcast address
+    for command, func in features_map.items():
+        locals()[func.__name__] = device_handler.command(command)(func)
 
     assistant = embedded_assistant_pb2_grpc.EmbeddedAssistantStub(
         grpc_channel

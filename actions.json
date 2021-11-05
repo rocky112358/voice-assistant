@@ -1,12 +1,12 @@
 {
     "manifest": {
-        "displayName": "Wake up desktop",
-        "invocationName": "Wake up desktop",
+        "displayName": "Home automation",
+        "invocationName": "Home automation",
         "category": "PRODUCTIVITY"
     },
     "actions": [
         {
-            "name": "com.example.actions.WakeupDesktop",
+            "name": "Wakeup home desktop",
             "availability": {
                 "deviceClasses": [
                     {
@@ -15,7 +15,7 @@
                 ]
             },
             "intent": {
-                "name": "com.example.intents.WakeupDesktop",
+                "name": "com.home.desktop.wakeup",
                 "trigger": {
                     "queryPatterns": [
                         "컴퓨터 켜 줘"
@@ -33,7 +33,43 @@
                             },
                             {
                                 "deviceExecution": {
-                                    "command": "com.example.commands.WakeupDesktop"
+                                    "command": "com.home.desktop.wakeup"
+                                }
+                            }
+                        ]
+                    }
+                }
+            }
+        },
+        {
+            "name": "Run calc.exe",
+            "availability": {
+                "deviceClasses": [
+                    {
+                        "assistantSdkDevice": {}
+                    }
+                ]
+            },
+            "intent": {
+                "name": "com.home.desktop.exec_calc",
+                "trigger": {
+                    "queryPatterns": [
+                        "계산기 켜 줘"
+                    ]
+                }
+            },
+            "fulfillment": {
+                "staticFulfillment": {
+                    "templatedResponse": {
+                        "items": [
+                            {
+                                "simpleResponse": {
+                                    "textToSpeech": "계산기를 켰습니다"
+                                }
+                            },
+                            {
+                                "deviceExecution": {
+                                    "command": "com.home.desktop.exec_calc"
                                 }
                             }
                         ]
@@ -44,3 +80,4 @@
     ],
     "locale": "ko"
 }
+
