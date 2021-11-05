@@ -1,0 +1,5 @@
+__pycache__/
+.python-version
+test_*.py
+*.json
+gactions

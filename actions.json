@@ -1,0 +1,46 @@
+{
+    "manifest": {
+        "displayName": "Wake up desktop",
+        "invocationName": "Wake up desktop",
+        "category": "PRODUCTIVITY"
+    },
+    "actions": [
+        {
+            "name": "com.example.actions.WakeupDesktop",
+            "availability": {
+                "deviceClasses": [
+                    {
+                        "assistantSdkDevice": {}
+                    }
+                ]
+            },
+            "intent": {
+                "name": "com.example.intents.WakeupDesktop",
+                "trigger": {
+                    "queryPatterns": [
+                        "컴퓨터 켜 줘"
+                    ]
+                }
+            },
+            "fulfillment": {
+                "staticFulfillment": {
+                    "templatedResponse": {
+                        "items": [
+                            {
+                                "simpleResponse": {
+                                    "textToSpeech": "컴퓨터를 켰습니다"
+                                }
+                            },
+                            {
+                                "deviceExecution": {
+                                    "command": "com.example.commands.WakeupDesktop"
+                                }
+                            }
+                        ]
+                    }
+                }
+            }
+        }
+    ],
+    "locale": "ko"
+}
