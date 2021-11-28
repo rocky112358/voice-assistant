@@ -42,7 +42,7 @@
             }
         },
         {
-            "name": "Run calc.exe",
+            "name": "Run Program",
             "availability": {
                 "deviceClasses": [
                     {
@@ -51,10 +51,16 @@
                 ]
             },
             "intent": {
-                "name": "com.home.desktop.exec_calc",
+                "name": "com.home.desktop.exec",
+                "parameters": [
+                  {
+                    "name": "program_name",
+                    "type": "org.schema.type.Text"
+                  }
+                ],
                 "trigger": {
                     "queryPatterns": [
-                        "계산기 켜 줘"
+                        "$org.schema.type.Text:program_name 실행해 줘"
                     ]
                 }
             },
@@ -64,12 +70,15 @@
                         "items": [
                             {
                                 "simpleResponse": {
-                                    "textToSpeech": "계산기를 켰습니다"
+                                    "textToSpeech": "프로그램을 실행했습니다"
                                 }
                             },
                             {
                                 "deviceExecution": {
-                                    "command": "com.home.desktop.exec_calc"
+                                    "command": "com.home.desktop.exec",
+                                    "params": {
+                                        "program_name": "$program_name"
+                                    }
                                 }
                             }
                         ]

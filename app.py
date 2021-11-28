@@ -28,11 +28,11 @@ device_model_id = 'aiy-project-6fa34-sleepybear-speaker-gnilt8'
 device_config = './device_config.json'
 conversation_stream=None
 
-logging.basicConfig(format="[%(levelname)s] %(asctime)s|%(filename)s:%(lineno)s|%(message)s", level="DEBUG")
+logging.basicConfig(format="[%(levelname)s] %(asctime)s|%(filename)s:%(lineno)s|%(message)s", level="INFO")
 
 features_map = {
     "com.home.desktop.wakeup": desktop.wake_on_lan,
-    "com.home.desktop.exec_calc": desktop.exec_calc
+    "com.home.desktop.exec": desktop.exec_program
 }
 
 def create_grpc_channel(credentials):
