@@ -1,3 +1,5 @@
+## Installation Instructions (Documentation work in progess...)
+
 Ubuntu 20.04.2
 
 ```sh
@@ -12,7 +14,7 @@ ln -s ~/.config/google-oauthlib-tool/credentials.json
 
 # config your audio device
 vi ~/.asoundrc
-# copy below
+# copy and paste, then modify
 
 # pcm.!default {
 #    type asym
@@ -41,8 +43,7 @@ alsamixer  # adjust volume, press [F6] for swtiching card
 arecord --format=S16_LE --duration=5 --rate=16000 --file-type=raw out.raw  # record
 aplay --format=S16_LE --rate=16000 out.raw  # play
 
-
-
+...
 
 python app.py
 ```
