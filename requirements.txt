@@ -5,4 +5,4 @@ sounddevice>=0.3.7,<0.4
 pathlib2>=2.3.0,<3
 pocketsphinx==0.1.15
 pypsexec==0.3.0
-paramiko==2.8.0
+paramiko==2.10.1
